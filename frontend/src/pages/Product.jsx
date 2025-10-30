@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
-import RelatedProducts from '../components/RelatedProducts';
+import RelatedProducts from '../components/RelatedProducts'; 
+import { toast } from 'react-toastify';
 
 const Product = () => {
 const {productId} = useParams();
@@ -63,7 +64,30 @@ useEffect(()=>{
           ))}
           </div>
           </div>
-         <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button> 
+        <button
+  onClick={() => {
+    // If no size selected
+    if (!size) {
+      toast.error("Please select a size first!");
+      return;
+    }
+
+    // Check login — assuming addToCart returns false if no token
+    const added = addToCart(productData._id, size);
+
+    if (!added) {
+      toast.error("Please login first!");
+      return;
+    }
+
+    // If successfully added
+    toast.success("Product added to cart!");
+  }}
+  className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'
+>
+  ADD TO CART
+</button>
+
           <hr className='mt-8 sm:w-4/5' />
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
           <p>100% Authentic product.</p>

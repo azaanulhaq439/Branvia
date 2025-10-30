@@ -102,26 +102,65 @@ const PlaceOrder = () => {
         <div className='mt-8 min-w-80'>
           <CartTotal />
         </div>
-        <div className='mt-12'>
-          <Title text1='PAYMENT' text2='METHOD' />
-          <div className='flex flex-col lg:flex-row'>
-            <div onClick={() => setMethod('stripe')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
-              <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'stripe' ? 'bg-green-400' : ''}`}></p>
-              <img className='h-5 mx-4' src={assets.stripe_logo} alt='' />
-            </div>
-            <div onClick={() => setMethod('razorpay')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
-              <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'razorpay' ? 'bg-green-400' : ''}`}></p>
-              <img className='h-5 mx-4' src={assets.razorpay_logo} alt='' />
-            </div>
-            <div onClick={() => setMethod('cod')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
-              <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'cod' ? 'bg-green-400' : ''}`}></p>
-              <p className='text-gray-500 text-sm font-medium mx-4'>CASH ON DELIVERY</p>
-            </div>
-          </div>
-          <div className='w-full text-end mt-8'>
-            <button type='submit' className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
-          </div>
-        </div>
+        <div className="mt-12">
+  <Title text1="PAYMENT" text2="METHOD" />
+
+  {/* Payment Options */}
+  <div className="flex flex-col lg:flex-row gap-4 mt-6">
+    {/* Stripe Option */}
+    <div
+      onClick={() => setMethod('stripe')}
+      className={`flex items-center justify-between border rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-1 ${
+        method === 'stripe' ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-white'
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${
+            method === 'stripe' ? 'border-green-500' : 'border-gray-400'
+          }`}
+        >
+          {method === 'stripe' && <span className="w-2 h-2 bg-green-500 rounded-full"></span>}
+        </span>
+        <img className="h-6 mx-2" src={assets.stripe_logo} alt="Stripe" />
+      </div>
+      <p className="text-gray-700 font-medium text-sm lg:text-base"></p>
+    </div>
+
+    {/* Cash on Delivery Option */}
+    <div
+      onClick={() => setMethod('cod')}
+      className={`flex items-center justify-between border rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-1 ${
+        method === 'cod' ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-white'
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${
+            method === 'cod' ? 'border-green-500' : 'border-gray-400'
+          }`}
+        >
+          {method === 'cod' && <span className="w-2 h-2 bg-green-500 rounded-full"></span>}
+        </span>
+        <p className="text-gray-700 font-medium text-sm lg:text-base mx-2">
+          Cash on Delivery
+        </p>
+      </div>
+      <p className="text-gray-500 text-xs lg:text-sm"></p>
+    </div>
+  </div>
+
+  {/* Place Order Button */}
+  <div className="w-full text-center lg:text-end mt-10">
+    <button
+      type="submit"
+      className="bg-black text-white px-10 py-3 rounded-full text-sm tracking-wide hover:bg-gray-800 transition-colors duration-300"
+    >
+      PLACE ORDER
+    </button>
+  </div>
+</div>
+
       </div>
     </form>
   );

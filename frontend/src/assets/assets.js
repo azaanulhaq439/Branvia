@@ -75,6 +75,7 @@ import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import branvia from './branvia.png'
 
+
 export const assets = {
     logo,
     hero_img,

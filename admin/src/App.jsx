@@ -15,6 +15,12 @@ export const currency = 'PKR';
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') ?localStorage.getItem('token') : '');
 
+ useEffect(() => {
+    // Clear old token on page refresh or app start
+    localStorage.removeItem('token');
+    setToken('');
+  }, []);
+  
   useEffect(() => {
     localStorage.setItem('token', token);
   },[token]);
